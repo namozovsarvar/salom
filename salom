@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learning App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .crazy-feedback {
+      animation: explode 1s ease-in-out forwards;
+    }
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.7; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="bg-blue-600 text-white p-4 flex justify-between">
+    <h1 class="font-bold">Learning Dashboard</h1>
+    <div>
+      <button onclick="switchMode('student')" class="px-3 py-1 bg-green-500 rounded">Student Mode</button>
+      <button onclick="switchMode('admin')" class="px-3 py-1 bg-yellow-500 rounded">Admin Mode</button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main" class="flex-1 p-6"></main>
+
+  <script>
+    let DATABASE = {
+      readingAudio: [],
+      vocabulary: [],
+      flashcards: [],
+      quickTasks: []
+    };
+
+    let mode = "student";
+
+    function switchMode(newMode) {
+      mode = newMode;
+      render();
+    }
+
+    function render() {
+      const main = document.getElementById("main");
+      main.innerHTML = "";
+
+      if (mode === "student") {
+        main.innerHTML = `
+          <h2 class="text-2xl font-bold mb-4">Student Dashboard</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <button onclick="startModule('readingAudio')" class="p-4 bg-white shadow rounded">📖 Reading & Audio</button>
+            <button onclick="startModule('vocabulary')" class="p-4 bg-white shadow rounded">📝 Vocabulary Builder</button>
+            <button onclick="startModule('flashcards')" class="p-4 bg-white shadow rounded">🎴 Memory Cards</button>
+            <button onclick="startModule('quickTasks')" class="p-4 bg-white shadow rounded">⚡ Quick Tasks</button>
+          </div>
+        `;
+      } else {
+        main.innerHTML = `
+          <h2 class="text-2xl font-bold mb-4">Admin Panel</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-semibold">Module A: Reading & Audio</h3>
+              <textarea id="storyInput" class="w-full p-2 border rounded" placeholder="Paste short story..."></textarea>
+              <button onclick="addStory()" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded">Add Story</button>
+            </div>
+            <div>
+              <h3 class="font-semibold">Module B: Vocabulary Builder</h3>
+              <textarea id="vocabInput" class="w-full p-2 border rounded" placeholder="word: meaning"></textarea>
+              <button onclick="addVocab()" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded">Add Vocabulary</button>
+            </div>
+            <div>
+              <h3 class="font-semibold">Module C: Flashcards</h3>
+              <input id="flashTerm" class="p-2 border rounded w-1/2" placeholder="Term">
+              <input id="flashDef" class="p-2 border rounded w-1/2" placeholder="Definition/Image URL">
+              <button onclick="addFlashcard()" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded">Add Flashcard</button>
+            </div>
+            <div>
+              <h3 class="font-semibold">Module D: Quick Tasks</h3>
+              <input id="taskInput" class="p-2 border rounded w-full" placeholder="Short exercise sentence">
+              <button onclick="addTask()" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded">Add Task</button>
+            </div>
+            <div>
+              <h3 class="font-semibold">Export Database</h3>
+              <button onclick="exportDB()" class="px-3 py-1 bg-green-600 text-white rounded">Generate JSON</button>
+              <pre id="dbOutput" class="bg-gray-200 p-2 mt-2 rounded"></pre>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function startModule(module) {
+      const main = document.getElementById("main");
+      if (module === "readingAudio") {
+        main.innerHTML = "<h2 class='text-xl font-bold mb-2'>Reading & Audio</h2>";
+        DATABASE.readingAudio.forEach((story, i) => {
+          main.innerHTML += `
+            <div class="p-4 bg-white shadow mb-2">
+              <p>${story}</p>
+              <button onclick="speak('${story.replace(/'/g,"")}')" class="mt-2 px-3 py-1 bg-blue-500 text-white rounded">🔊 Read Aloud</button>
+            </div>`;
+        });
+      }
+      if (module === "vocabulary") {
+        main.innerHTML = "<h2 class='text-xl font-bold mb-2'>Vocabulary Builder</h2>";
+        DATABASE.vocabulary.forEach(v => {
+          main.innerHTML += `<div class="p-2 bg-white shadow mb-2">${v.word} → ${v.meaning}</div>`;
+        });
+      }
+      if (module === "flashcards") {
+        main.innerHTML = "<h2 class='text-xl font-bold mb-2'>Flashcards</h2>";
+        DATABASE.flashcards.forEach(f => {
+          main.innerHTML += `<div class="p-4 bg-white shadow mb-2">Front: ${f.term} | Back: ${f.definition}</div>`;
+        });
+      }
+      if (module === "quickTasks") {
+        main.innerHTML = "<h2 class='text-xl font-bold mb-2'>Quick Tasks</h2>";
+        DATABASE.quickTasks.forEach(t => {
+          main.innerHTML += `<div class="p-2 bg-white shadow mb-2">${t}</div>`;
+        });
+      }
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+    }
+
+    function addStory() {
+      const val = document.getElementById("storyInput").value;
+      if (val) DATABASE.readingAudio.push(val);
+      render();
+    }
+
+    function addVocab() {
+      const val = document.getElementById("vocabInput").value;
+      if (val.includes(":")) {
+        const [word, meaning] = val.split(":");
+        DATABASE.vocabulary.push({word: word.trim(), meaning: meaning.trim()});
+      }
+      render();
+    }
+
+    function addFlashcard() {
+      const term = document.getElementById("flashTerm").value;
+      const def = document.getElementById("flashDef").value;
+      if (term && def) DATABASE.flashcards.push({term, definition: def});
+      render();
+    }
+
+    function addTask() {
+      const val = document.getElementById("taskInput").value;
+      if (val) DATABASE.quickTasks.push(val);
+      render();
+    }
+
+    function exportDB() {
+      document.getElementById("dbOutput").textContent = JSON.stringify(DATABASE, null, 2);
+    }
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>
