@@ -1,92 +1,117 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>VIP • Link</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>VIP · Link in Bio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Animated background layers -->
-  <div class="bg">
-    <div class="bg-gradient"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="grain"></div>
-    <canvas id="particles"></canvas>
-  </div>
 
-  <main class="card" id="card">
+<!-- WebGL-style animated mesh gradient -->
+<canvas id="mesh"></canvas>
+<div class="noise"></div>
+<div class="spotlight" id="spotlight"></div>
 
-    <!-- VIP badge -->
-    <div class="vip-badge reveal" data-delay="0">
-      <span class="vip-dot"></span>
-      <span>VIP</span>
-    </div>
+<div class="shell">
+  <main class="stage">
 
-    <!-- Avatar -->
-    <div class="avatar-wrap reveal" data-delay="1">
-      <div class="avatar-ring"></div>
-      <div class="avatar">
-        <!-- Заменишь на своё фото: <img src="photo.jpg" alt=""> -->
-        <span class="avatar-initials">VIP</span>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+
+      <div class="ava" data-anim="1">
+        <div class="ava-spin"></div>
+        <div class="ava-core">
+          <span>VIP</span>
+        </div>
+        <div class="ava-verify" title="Verified">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
       </div>
-      <div class="avatar-online"></div>
-    </div>
 
-    <!-- Name + bio -->
-    <h1 class="name reveal" data-delay="2">Ваше Имя</h1>
-    <p class="role reveal" data-delay="3">Профессия / Бренд</p>
-    <p class="bio reveal" data-delay="4">
-      Короткое описание о вас. Здесь будет текст,
-      который ты добавишь позже. ✨
-    </p>
+      <h1 class="title" data-anim="2">
+        <span class="line">Ваше</span>
+        <span class="line grad">Имя</span>
+      </h1>
 
-    <!-- Social row -->
-    <div class="socials reveal" data-delay="5">
-      <a href="#" class="social tg" aria-label="Telegram">
+      <p class="tag" data-anim="3">
+        <span class="tag-pill">● ONLINE</span>
+        Профессия / Личный бренд
+      </p>
+
+      <div class="stats" data-anim="4">
+        <div class="stat"><b data-count="128">0</b><span>проектов</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><b data-count="54">0</b><span>тыс. подписчиков</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><b data-count="9">0</b><span>лет опыта</span></div>
+      </div>
+    </section>
+
+    <!-- ===== SOCIAL ICONS (magnetic) ===== -->
+    <section class="socials" data-anim="5">
+      <a href="#" class="mag soc-tg" data-mag aria-label="Telegram">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.6 18.9 19.2c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.33-4.78L18.4 6.1c.38-.34-.08-.53-.59-.19L6.97 12.9l-4.66-1.46c-1.01-.32-1.03-1.01.22-1.5L20.6 3.1c.85-.31 1.59.2 1.34 1.5z"/></svg>
-        <span>Telegram</span>
       </a>
-      <a href="#" class="social ig" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.51.01-4.75.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17C2.39 8.49 2.4 8.86 2.4 12s-.01 3.51.05 4.75c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4C15.51 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28zm5.14-1.04a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0z"/></svg>
-        <span>Instagram</span>
+      <a href="#" class="mag soc-ig" data-mag aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 4.86A4.94 4.94 0 1 0 12 17a4.94 4.94 0 0 0 0-9.88zm0 1.8a3.14 3.14 0 1 1 0 6.28 3.14 3.14 0 0 1 0-6.28zm5.14-1.04a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0z"/></svg>
       </a>
+      <a href="#" class="mag soc-yt" data-mag aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7c-.2-.8-.9-1.5-1.7-1.7C19.4 5.2 12 5.2 12 5.2s-7.4 0-8.9.4c-.8.2-1.5.9-1.7 1.7C1 8.8 1 12 1 12s0 3.2.4 4.7c.2.8.9 1.5 1.7 1.7 1.5.4 8.9.4 8.9.4s7.4 0 8.9-.4c.8-.2 1.5-.9 1.7-1.7.4-1.5.4-4.7.4-4.7zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>
+      </a>
+      <a href="#" class="mag soc-wa" data-mag aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 2 .8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2A10 10 0 0 0 3.5 17.2L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
+      </a>
+    </section>
+
+    <!-- ===== BENTO GRID ===== -->
+    <section class="bento">
+
+      <a href="#" class="cell big mag" data-mag data-anim="6">
+        <div class="cell-shine"></div>
+        <span class="emoji">🚀</span>
+        <h3>Мои услуги</h3>
+        <p>Премиум-предложения и сотрудничество</p>
+        <span class="go">Открыть <i>→</i></span>
+      </a>
+
+      <a href="#" class="cell mag" data-mag data-anim="7">
+        <span class="emoji">💬</span>
+        <h3>Связаться</h3>
+        <span class="go">Чат <i>→</i></span>
+      </a>
+
+      <a href="#" class="cell mag" data-mag data-anim="8">
+        <span class="emoji">⭐</span>
+        <h3>Отзывы</h3>
+        <span class="go">Читать <i>→</i></span>
+      </a>
+
+      <a href="#" class="cell wide mag" data-mag data-anim="9">
+        <div class="cell-shine"></div>
+        <span class="emoji">🎁</span>
+        <h3>Спецпредложение</h3>
+        <p>Ограниченное время · −30%</p>
+        <span class="go">Забрать <i>→</i></span>
+      </a>
+
+    </section>
+
+    <!-- ===== MARQUEE ===== -->
+    <div class="marquee" data-anim="10">
+      <div class="marquee-track">
+        <span>VIP ✦ ПРЕМИУМ ✦ ЭКСКЛЮЗИВ ✦ КАЧЕСТВО ✦ СТИЛЬ ✦ VIP ✦ ПРЕМИУМ ✦ ЭКСКЛЮЗИВ ✦ КАЧЕСТВО ✦ СТИЛЬ ✦</span>
+      </div>
     </div>
 
-    <!-- Link buttons (placeholders — заполнишь позже) -->
-    <nav class="links">
-      <a href="#" class="link reveal" data-delay="6">
-        <span class="link-ico">💬</span>
-        <span class="link-text">Связаться со мной</span>
-        <span class="link-arrow">→</span>
-      </a>
-      <a href="#" class="link reveal" data-delay="7">
-        <span class="link-ico">🛍️</span>
-        <span class="link-text">Мои услуги</span>
-        <span class="link-arrow">→</span>
-      </a>
-      <a href="#" class="link reveal" data-delay="8">
-        <span class="link-ico">⭐</span>
-        <span class="link-text">Отзывы</span>
-        <span class="link-arrow">→</span>
-      </a>
-      <a href="#" class="link reveal" data-delay="9">
-        <span class="link-ico">🎁</span>
-        <span class="link-text">Специальное предложение</span>
-        <span class="link-arrow">→</span>
-      </a>
-    </nav>
-
-    <footer class="foot reveal" data-delay="10">
-      <span>Made with ✨</span>
-    </footer>
+    <footer class="foot" data-anim="11">© 2026 · Сделано со вкусом</footer>
   </main>
+</div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
