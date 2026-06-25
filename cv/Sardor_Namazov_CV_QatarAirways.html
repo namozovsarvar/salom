@@ -4,202 +4,229 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sardor Namazov — CV (Qatar Airways · F&B Food Service Assistant)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   @page { size: A4; margin: 0; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    color:#1b2733; background:#e9edf1;
+  :root{
+    --ink:#11161d; --navy:#0c1b2a; --teal:#13a594; --teal-d:#0c7d70;
+    --gold:#c9a24b; --grey:#5c6b7a; --line:#e7ecf1; --soft:#f5f8fa;
+  }
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif; color:var(--ink); background:#dfe5ec;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
-  .page {
-    width:210mm; min-height:297mm; margin:18px auto; background:#fff;
-    box-shadow:0 10px 40px rgba(0,0,0,.15); position:relative;
-  }
-  /* Header */
-  .head { background:#0e2233; color:#fff; padding:26px 34px 20px; border-bottom:5px solid #117a6b; }
-  .head h1 { font-size:30px; letter-spacing:1px; font-weight:700; }
-  .role { color:#5fd0bd; font-size:14px; letter-spacing:2px; margin-top:4px; text-transform:uppercase; }
-  .contact { font-size:11.5px; color:#cdd7df; margin-top:12px; }
-  .contact span { white-space:nowrap; }
-  .sep { color:#5fd0bd; margin:0 8px; }
-  /* Body grid */
-  .body { display:flex; }
-  .left { width:63%; padding:24px 30px; }
-  .right { width:37%; padding:24px 26px; background:#f4f6f8; border-left:1px solid #e2e7ec; }
-  h2 { font-size:14px; color:#0e2233; text-transform:uppercase; letter-spacing:1.5px;
-       border-bottom:2px solid #117a6b; padding-bottom:5px; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-  h2 .ic { color:#117a6b; }
-  .profile { font-size:12.5px; line-height:1.6; text-align:justify; color:#33414f; }
-  .profile b { color:#0e2233; }
-  /* Jobs */
-  .job { margin-bottom:16px; }
-  .job-top { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
-  .job-title { font-size:13.5px; font-weight:700; color:#0e2233; }
-  .job-date { font-size:10.5px; color:#fff; background:#117a6b; padding:2px 9px; border-radius:3px; white-space:nowrap; font-family:Arial,sans-serif; }
-  .job-org { font-size:11.5px; color:#117a6b; font-style:italic; margin:3px 0 6px; }
-  .job ul { list-style:none; }
-  .job li { font-size:11.8px; line-height:1.5; color:#33414f; padding-left:15px; position:relative; margin-bottom:3px; }
-  .job li::before { content:"▸"; color:#117a6b; position:absolute; left:0; }
-  /* Right column */
-  .blk { margin-bottom:22px; }
-  .skill, .lang, .pers { font-size:11.8px; color:#33414f; line-height:1.5; padding-left:15px; position:relative; margin-bottom:6px; }
-  .skill::before { content:"◆"; color:#117a6b; font-size:8px; position:absolute; left:0; top:3px; }
-  .lang::before { content:"●"; color:#117a6b; font-size:9px; position:absolute; left:0; top:2px; }
-  .pers::before { content:"✓"; color:#117a6b; position:absolute; left:0; }
-  .lang b { color:#0e2233; }
-  .edu-card { background:#fff; border:1px solid #e2e7ec; border-left:3px solid #117a6b; padding:10px 12px; }
-  .edu-card .uni { font-size:12.5px; font-weight:700; color:#0e2233; }
-  .edu-card .deg { font-size:11px; color:#117a6b; margin:3px 0; }
-  .edu-card .meta { font-size:10.5px; color:#6b7886; }
-  .quote { background:#0e2233; color:#dfe8ee; font-size:11.5px; font-style:italic; line-height:1.6;
-           padding:14px 16px; border-radius:4px; }
-  .quote .name { display:block; margin-top:8px; color:#5fd0bd; font-style:normal; font-weight:700; }
-  .note { font-size:9px; color:#aaa; text-align:center; padding:6px; }
-  @media print { body{background:#fff;} .page{margin:0; box-shadow:none;} .screen-only{display:none;} }
+  .page{ width:210mm; min-height:297mm; margin:18px auto; background:#fff;
+    box-shadow:0 20px 60px rgba(12,27,42,.22); overflow:hidden; position:relative; }
+
+  /* ===== Sidebar layout ===== */
+  .grid{ display:flex; min-height:297mm; }
+  .side{ width:34%; background:linear-gradient(165deg,#0c1b2a 0%,#102c41 60%,#0d3b3a 100%);
+    color:#dde7ef; padding:0 0 30px; position:relative; }
+  .side::after{ content:""; position:absolute; top:0; right:0; width:4px; height:100%;
+    background:linear-gradient(180deg,var(--teal),var(--gold)); }
+  .main{ width:66%; padding:34px 36px; }
+
+  /* ===== Avatar / name block ===== */
+  .id{ padding:34px 26px 22px; text-align:center; position:relative; }
+  .id::before{ content:""; position:absolute; inset:0; background:
+    radial-gradient(120px 120px at 50% 0%, rgba(19,165,148,.35), transparent 70%); }
+  .mono{ width:96px; height:96px; margin:0 auto 16px; border-radius:50%; position:relative;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--teal),var(--teal-d)); color:#fff;
+    font-family:'Outfit'; font-weight:800; font-size:34px; letter-spacing:1px;
+    box-shadow:0 10px 30px rgba(19,165,148,.4); border:3px solid rgba(255,255,255,.12); }
+  .mono span{ position:relative; z-index:1; }
+  .id h1{ font-family:'Outfit'; font-size:21px; font-weight:800; color:#fff; line-height:1.2; letter-spacing:.3px; }
+  .id .sub{ margin-top:7px; display:inline-block; font-size:10px; font-weight:700; letter-spacing:2px;
+    text-transform:uppercase; color:#0c1b2a; background:linear-gradient(135deg,#e7c870,var(--gold));
+    padding:5px 12px; border-radius:30px; }
+
+  /* ===== Sidebar sections ===== */
+  .sblk{ padding:0 26px; margin-top:24px; }
+  .sh{ font-family:'Outfit'; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    color:var(--teal); margin-bottom:13px; display:flex; align-items:center; gap:9px; }
+  .sh .bar{ flex:1; height:1px; background:rgba(255,255,255,.14); }
+  .ctc{ font-size:11px; line-height:1.5; color:#cdd9e3; display:flex; gap:9px; align-items:flex-start; margin-bottom:10px; word-break:break-word; }
+  .ctc .i{ color:var(--teal); flex:none; width:14px; text-align:center; }
+
+  .skill{ margin-bottom:11px; }
+  .skill .top{ display:flex; justify-content:space-between; font-size:10.8px; color:#e3edf4; margin-bottom:4px; font-weight:600; }
+  .skill .track{ height:5px; border-radius:5px; background:rgba(255,255,255,.12); overflow:hidden; }
+  .skill .fill{ height:100%; border-radius:5px; background:linear-gradient(90deg,var(--teal),var(--gold)); }
+
+  .lang{ font-size:11px; color:#dde7ef; margin-bottom:9px; display:flex; justify-content:space-between; }
+  .lang b{ color:#fff; font-weight:700; }
+  .lang em{ font-style:normal; color:var(--teal); font-size:10px; }
+
+  .pers{ font-size:11px; color:#dde7ef; line-height:1.5; padding-left:17px; position:relative; margin-bottom:8px; }
+  .pers::before{ content:"◆"; color:var(--teal); font-size:7px; position:absolute; left:0; top:3px; }
+
+  /* ===== Main column ===== */
+  .mh{ font-family:'Outfit'; font-size:15px; font-weight:700; color:var(--navy);
+    text-transform:uppercase; letter-spacing:1px; display:flex; align-items:center; gap:11px; margin-bottom:14px; }
+  .mh .dot{ width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg,var(--teal),var(--teal-d));
+    color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; box-shadow:0 6px 16px rgba(19,165,148,.35); }
+  .mh .ln{ flex:1; height:2px; background:linear-gradient(90deg,var(--line),transparent); }
+
+  .profile{ font-size:12.5px; line-height:1.7; color:#3a4754; text-align:justify; margin-bottom:26px; }
+  .profile b{ color:var(--navy); }
+
+  .tl{ position:relative; padding-left:26px; margin-bottom:26px; }
+  .tl::before{ content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .job{ position:relative; margin-bottom:18px; }
+  .job::before{ content:""; position:absolute; left:-23px; top:5px; width:12px; height:12px; border-radius:50%;
+    background:#fff; border:3px solid var(--teal); box-shadow:0 0 0 3px rgba(19,165,148,.15); }
+  .job-top{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .job-title{ font-family:'Outfit'; font-size:14px; font-weight:700; color:var(--navy); }
+  .job-date{ font-size:10px; font-weight:700; color:var(--teal-d); background:rgba(19,165,148,.1);
+    padding:3px 10px; border-radius:30px; white-space:nowrap; }
+  .job-org{ font-size:11.5px; color:var(--gold); font-weight:600; margin:3px 0 7px; }
+  .job ul{ list-style:none; }
+  .job li{ font-size:11.6px; line-height:1.55; color:#3a4754; padding-left:16px; position:relative; margin-bottom:4px; }
+  .job li::before{ content:"›"; color:var(--teal); font-weight:800; position:absolute; left:2px; top:-1px; font-size:14px; }
+
+  .edu{ background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .edu .uni{ font-family:'Outfit'; font-size:13.5px; font-weight:700; color:var(--navy); }
+  .edu .deg{ font-size:11.5px; color:var(--teal-d); font-weight:600; margin:4px 0; }
+  .edu .meta{ font-size:10.5px; color:var(--grey); }
 </style>
 </head>
 <body>
-<div class="screen-only" style="max-width:210mm;margin:14px auto 0;font-family:Arial,sans-serif;font-size:13px;background:#fff8e1;border:1px solid #f0d98a;border-radius:8px;padding:12px 16px;color:#5b4a14;">
-  💡 <b>PDF yasash:</b> brauzerda <b>Print (Ctrl/Cmd+P)</b> → <b>Save as PDF</b>. Bu matn chop etishda chiqmaydi.
-</div>
-
 <div class="page">
-  <header class="head">
-    <h1>NAMAZOV SARDOR HUSNIDDINOVICH</h1>
-    <div class="role">F&amp;B Food Service Assistant</div>
-    <div class="contact">
-      <span>+998 20 005 04 03</span><span class="sep">·</span>
-      <span>sardor.husniddinovich@gmail.com</span><span class="sep">·</span>
-      <span>Navoi, Uzbekistan</span><span class="sep">·</span>
-      <span>DOB: 27.06.2003</span>
-    </div>
-  </header>
+  <div class="grid">
 
-  <div class="body">
-    <!-- LEFT -->
-    <div class="left">
-      <section style="margin-bottom:22px;">
-        <h2><span class="ic">▣</span> Professional Profile</h2>
-        <p class="profile">
-          Energetic and customer-focused hospitality professional with <b>4+ years of hands-on
-          experience</b> in food &amp; beverage service, hotel front-of-house and guest relations.
-          Skilled in delivering fast, accurate and friendly service in busy environments, operating
-          POS/till systems and maintaining high food-hygiene standards. Strong English communicator,
-          team-oriented and fully prepared to relocate to Doha and contribute to the world-class
-          service standards of <b>Qatar Airways</b>.
-        </p>
-      </section>
-
-      <section>
-        <h2><span class="ic">▣</span> Work Experience</h2>
-
-        <div class="job">
-          <div class="job-top">
-            <span class="job-title">Restaurant Service Supervisor</span>
-            <span class="job-date">Dec 2025 – May 2026</span>
-          </div>
-          <div class="job-org">Tinchlik Plaza Restaurant · Navoi, Uzbekistan</div>
-          <ul>
-            <li>Served food and beverages to 80+ guests daily, ensuring fast and accurate order delivery</li>
-            <li>Maintained food-hygiene, cleanliness and safety standards across the service area</li>
-            <li>Operated the POS/till system for orders, payments and end-of-shift cash reconciliation</li>
-            <li>Trained and supported new service staff during peak hours to keep service smooth</li>
-            <li>Handled guest requests and resolved complaints to ensure a positive dining experience</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-top">
-            <span class="job-title">Hotel Front Desk Receptionist</span>
-            <span class="job-date">Feb 2024 – Nov 2025</span>
-          </div>
-          <div class="job-org">Regal Hotel · Navoi, Uzbekistan</div>
-          <ul>
-            <li>Greeted and checked guests in/out, managing reservations and front-desk inquiries</li>
-            <li>Acted as first point of contact for guest requests, feedback and issue resolution</li>
-            <li>Coordinated with housekeeping and F&amp;B teams for a seamless guest experience</li>
-            <li>Maintained a professional, well-groomed appearance and high service etiquette</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-top">
-            <span class="job-title">Sales Assistant (Customer Service)</span>
-            <span class="job-date">Aug 2021 – Dec 2022</span>
-          </div>
-          <div class="job-org">Farovon · Navoi, Uzbekistan</div>
-          <ul>
-            <li>Assisted customers, processed sales and handled cash/till operations accurately</li>
-            <li>Built rapport with clients and delivered reliable, friendly service</li>
-            <li>Supported daily operations and maintained a tidy, well-organised work area</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-top">
-            <span class="job-title">Social Media Manager (Freelance, part-time)</span>
-            <span class="job-date">2022 – 2023</span>
-          </div>
-          <div class="job-org">Biomed Clinic · Remote</div>
-          <ul>
-            <li>Managed social media accounts and created engaging content</li>
-            <li>Grew the online audience and improved customer engagement</li>
-          </ul>
-        </div>
-      </section>
-    </div>
-
-    <!-- RIGHT -->
-    <div class="right">
-      <div class="blk">
-        <h2><span class="ic">▣</span> Core Skills</h2>
-        <div class="skill">Food &amp; Beverage Service</div>
-        <div class="skill">Guest Relations &amp; Customer Service</div>
-        <div class="skill">POS / Till Operation &amp; Cash Handling</div>
-        <div class="skill">Food Hygiene &amp; Safety Awareness</div>
-        <div class="skill">Teamwork in Fast-Paced Settings</div>
-        <div class="skill">Order Accuracy &amp; Speed of Service</div>
-        <div class="skill">Conflict Resolution</div>
-        <div class="skill">Professional Grooming &amp; Etiquette</div>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="side">
+      <div class="id">
+        <div class="mono"><span>SN</span></div>
+        <h1>SARDOR<br>NAMAZOV</h1>
+        <div class="sub">F&amp;B Service Assistant</div>
       </div>
 
-      <div class="blk">
-        <h2><span class="ic">▣</span> Languages</h2>
-        <div class="lang"><b>Uzbek</b> — Native</div>
-        <div class="lang"><b>English</b> — B1 Intermediate</div>
-        <div class="lang"><b>Russian</b> — A2 Elementary</div>
+      <div class="sblk">
+        <div class="sh">Contact <span class="bar"></span></div>
+        <div class="ctc"><span class="i">✆</span> +998 20 005 04 03</div>
+        <div class="ctc"><span class="i">✉</span> sardor.husniddinovich@gmail.com</div>
+        <div class="ctc"><span class="i">⌂</span> Navoi, Uzbekistan</div>
+        <div class="ctc"><span class="i">◷</span> DOB: 27.06.2003</div>
+        <div class="ctc"><span class="i">✈</span> Ready to relocate to Doha</div>
       </div>
 
-      <div class="blk">
-        <h2><span class="ic">▣</span> Personality</h2>
+      <div class="sblk">
+        <div class="sh">Core Skills <span class="bar"></span></div>
+        <div class="skill"><div class="top"><span>Food &amp; Beverage Service</span><span>95%</span></div><div class="track"><div class="fill" style="width:95%"></div></div></div>
+        <div class="skill"><div class="top"><span>Guest Relations</span><span>92%</span></div><div class="track"><div class="fill" style="width:92%"></div></div></div>
+        <div class="skill"><div class="top"><span>POS / Till &amp; Cash</span><span>88%</span></div><div class="track"><div class="fill" style="width:88%"></div></div></div>
+        <div class="skill"><div class="top"><span>Food Hygiene &amp; Safety</span><span>85%</span></div><div class="track"><div class="fill" style="width:85%"></div></div></div>
+        <div class="skill"><div class="top"><span>Teamwork &amp; Speed</span><span>90%</span></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+        <div class="skill"><div class="top"><span>Conflict Resolution</span><span>82%</span></div><div class="track"><div class="fill" style="width:82%"></div></div></div>
+      </div>
+
+      <div class="sblk">
+        <div class="sh">Languages <span class="bar"></span></div>
+        <div class="lang"><b>Uzbek</b> <em>Native</em></div>
+        <div class="lang"><b>English</b> <em>B1 Intermediate</em></div>
+        <div class="lang"><b>Russian</b> <em>A2 Elementary</em></div>
+      </div>
+
+      <div class="sblk">
+        <div class="sh">Personality <span class="bar"></span></div>
         <div class="pers">Energetic &amp; disciplined</div>
         <div class="pers">Quick learner, adaptable</div>
         <div class="pers">Team-first attitude</div>
         <div class="pers">Physically fit for active shifts</div>
         <div class="pers">Punctual &amp; reliable</div>
       </div>
+    </aside>
 
-      <div class="blk">
-        <h2><span class="ic">▣</span> Education</h2>
-        <div class="edu-card">
+    <!-- ===== MAIN ===== -->
+    <main class="main">
+      <section>
+        <div class="mh"><span class="dot">▤</span> Profile <span class="ln"></span></div>
+        <p class="profile">
+          Energetic and customer-focused hospitality professional with <b>4+ years of hands-on
+          experience</b> in food &amp; beverage service, hotel front-of-house and guest relations.
+          Skilled in delivering fast, accurate and friendly service in busy environments, operating
+          POS/till systems and maintaining high food-hygiene standards. Strong English communicator
+          and team player, fully prepared to relocate to Doha and uphold the world-class service
+          standards of <b>Qatar Airways</b>.
+        </p>
+      </section>
+
+      <section>
+        <div class="mh"><span class="dot">▥</span> Experience <span class="ln"></span></div>
+        <div class="tl">
+
+          <div class="job">
+            <div class="job-top">
+              <span class="job-title">Restaurant Service Supervisor</span>
+              <span class="job-date">Dec 2025 – May 2026</span>
+            </div>
+            <div class="job-org">Tinchlik Plaza Restaurant · Navoi, Uzbekistan</div>
+            <ul>
+              <li>Served food and beverages to 80+ guests daily with fast, accurate order delivery</li>
+              <li>Maintained food-hygiene, cleanliness and safety standards across the service area</li>
+              <li>Operated the POS/till for orders, payments and end-of-shift cash reconciliation</li>
+              <li>Trained and supported new service staff during peak hours</li>
+              <li>Resolved guest requests and complaints to ensure a positive dining experience</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-top">
+              <span class="job-title">Hotel Front Desk Receptionist</span>
+              <span class="job-date">Feb 2024 – Nov 2025</span>
+            </div>
+            <div class="job-org">Regal Hotel · Navoi, Uzbekistan</div>
+            <ul>
+              <li>Checked guests in/out and managed reservations and front-desk inquiries</li>
+              <li>Acted as first point of contact for guest requests, feedback and issue resolution</li>
+              <li>Coordinated with housekeeping and F&amp;B teams for a seamless guest experience</li>
+              <li>Maintained a professional, well-groomed appearance and service etiquette</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-top">
+              <span class="job-title">Sales Assistant (Customer Service)</span>
+              <span class="job-date">Aug 2021 – Dec 2022</span>
+            </div>
+            <div class="job-org">Farovon · Navoi, Uzbekistan</div>
+            <ul>
+              <li>Assisted customers, processed sales and handled cash/till operations accurately</li>
+              <li>Built rapport with clients and delivered reliable, friendly service</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-top">
+              <span class="job-title">Social Media Manager (Freelance)</span>
+              <span class="job-date">2022 – 2023</span>
+            </div>
+            <div class="job-org">Biomed Clinic · Remote, part-time</div>
+            <ul>
+              <li>Managed social media accounts and created engaging content</li>
+              <li>Grew the online audience and improved customer engagement</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <div class="mh"><span class="dot">▦</span> Education <span class="ln"></span></div>
+        <div class="edu">
           <div class="uni">Chirchiq State Pedagogical University</div>
           <div class="deg">Bachelor's Degree</div>
           <div class="meta">2021 – 2026 · Chirchiq, Uzbekistan</div>
         </div>
-      </div>
+      </section>
+    </main>
 
-      <div class="blk">
-        <h2><span class="ic">▣</span> Statement</h2>
-        <div class="quote">
-          I am a versatile, service-driven professional ready to bring energy, reliability and
-          a guest-first attitude to the Qatar Airways F&amp;B team.
-          <span class="name">— Sardor Namazov</span>
-        </div>
-      </div>
-    </div>
   </div>
-  <div class="note">Available upon request: references · Ready to relocate to Doha, Qatar</div>
 </div>
 </body>
 </html>
